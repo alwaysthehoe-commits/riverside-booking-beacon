@@ -1,65 +1,15 @@
 import './style.css';
-
-const OFFICIAL_NAME_SEARCH = 'https://jimspub.riversidesheriff.org/jimsacucgi/InmateInfo.html';
-const OFFICIAL_DATE_SEARCH = 'https://jimspub.riversidesheriff.org/jimsacucgi/SearchByDate.html';
-const OFFICIAL_INFO = 'https://www.riversidesheriff.org/213/Inmate-Information';
-
-const app = document.querySelector('#app');
-
-app.innerHTML = `
-  <header>
-    <div class="brand">
-      <span class="mark" aria-hidden="true">RB</span>
-      <div><b>RIVERSIDE</b><small>BOOKING BEACON</small></div>
-    </div>
-    <a class="source" href="${OFFICIAL_INFO}" target="_blank" rel="noopener noreferrer">OFFICIAL SHERIFF RESOURCES ↗</a>
-  </header>
-
-  <main>
-    <section class="hero">
-      <p class="eyebrow">RIVERSIDE COUNTY · CALIFORNIA</p>
-      <h1>Booking <em>Beacon</em></h1>
-      <p class="sub">A simple starting point for finding public inmate and booking information through the Riverside County Sheriff's official search system.</p>
-    </section>
-
-    <section class="panel" aria-labelledby="search-heading">
-      <h2 id="search-heading">Search official booking records</h2>
-      <p class="panel-intro">Choose how you want to search. Each option opens the Sheriff's live public database in a new tab. Search results are provided and maintained by the Sheriff's Office.</p>
-      <div class="actions">
-        <article class="action-card">
-          <h3>Search by name</h3>
-          <p>Look up an individual using a required last name. First name, date of birth, and gender can help narrow the official search.</p>
-          <a class="button" href="${OFFICIAL_NAME_SEARCH}" target="_blank" rel="noopener noreferrer">OPEN NAME SEARCH ↗</a>
-        </article>
-        <article class="action-card">
-          <h3>Search by booking date</h3>
-          <p>Open the Sheriff's booking-date search to choose a facility and date from the official database.</p>
-          <a class="button" href="${OFFICIAL_DATE_SEARCH}" target="_blank" rel="noopener noreferrer">OPEN DATE SEARCH ↗</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="notice">
-      <b>IMPORTANT RECORDS NOTICE</b>
-      <p>This is an independent information portal, not a government website. Booking information may be delayed, incomplete, or changed. A booking or charge is not proof of guilt. The Sheriff's own database warns that its information should not be relied upon for legal action. Always verify details with the official source.</p>
-      <a class="button secondary" href="${OFFICIAL_INFO}" target="_blank" rel="noopener noreferrer">RIVERSIDE SHERIFF INMATE INFORMATION ↗</a>
-    </section>
-
-    <section class="panel" style="margin-top:22px">
-      <h2>County detention facilities</h2>
-      <p class="panel-intro">The Sheriff's Corrections Division lists these adult detention facilities.</p>
-      <div class="facilities">
-        <div class="facility">Blythe Jail<span>Blythe</span></div>
-        <div class="facility">Cois M. Byrd Detention Center<span>Murrieta</span></div>
-        <div class="facility">John J. Benoit Detention Center<span>Indio</span></div>
-        <div class="facility">Larry D. Smith Correctional Facility<span>Banning</span></div>
-        <div class="facility">Robert Presley Detention Center<span>Riverside</span></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <span>RIVERSIDE BOOKING BEACON</span>
-    <span>PUBLIC INFORMATION · NOT A GOVERNMENT WEBSITE</span>
-  </footer>
-`;
+const dateSearch='https://jimspub.riversidesheriff.org/jimsacucgi/SearchByDate.html';
+const nameSearch='https://jimspub.riversidesheriff.org/jimsacucgi/InmateInfo.html';
+const info='https://www.riversidesheriff.org/213/Inmate-Information';
+const today=new Intl.DateTimeFormat('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric',timeZone:'America/Los_Angeles'}).format(new Date());
+document.querySelector('#app').innerHTML=`
+<header><a class="brand" href="/"><b>RB</b><span><strong>RIVERSIDE</strong><small>BOOKING BEACON</small></span></a><span class="source-pill">● OFFICIAL PUBLIC SOURCE</span></header>
+<main>
+<section class="hero"><small>RIVERSIDE COUNTY · CALIFORNIA</small><h1>Daily Arrest <em>&amp; Booking Log</em></h1><p>Browse public booking records by date from the Riverside County Sheriff's live records system.</p><div class="today">● TODAY IN RIVERSIDE COUNTY <b>${today}</b></div></section>
+<section class="coverage-stats"><div><b>RIVERSIDE</b><small>COUNTYWIDE COVERAGE</small></div><div><b>5</b><small>ADULT DETENTION FACILITIES</small></div><div><b>7</b><small>LOCAL AREAS HIGHLIGHTED</small></div></section>
+<section class="panel"><div class="heading"><div><small>LIVE PUBLIC RECORDS</small><h2>Bookings by date</h2></div><a href="${dateSearch}" target="_blank" rel="noopener">OPEN FULL SEARCH ↗</a></div><p>The official date-search page is below. Select a facility and booking date in the Sheriff's form to view the records it publishes. Records are controlled by the Sheriff's Office.</p><div class="frame"><div class="frame-title"><span>RIVERSIDE COUNTY SHERIFF · JIMS</span><a href="${dateSearch}" target="_blank" rel="noopener">OPEN IN NEW TAB ↗</a></div><iframe title="Official Riverside County booking date search" src="${dateSearch}" loading="eager" referrerpolicy="no-referrer"></iframe></div><small class="hint">If the official page is blocked from embedding, use the open-search link above. This portal does not invent or display sample arrest records.</small></section>
+<section class="panel name-panel"><div><small>PERSON LOOKUP</small><h2>Search by name</h2><p>Find a person in the Sheriff's current public inmate database.</p></div><a class="button" href="${nameSearch}" target="_blank" rel="noopener">SEARCH BY NAME ↗</a></section>
+<section class="areas"><small>REQUESTED LOCAL COVERAGE</small><h2>Riverside County areas</h2><p>Lake Elsinore · Wildomar · Murrieta · Temecula · Menifee · Perris · Corona · Rest of Riverside County</p><div>These are city-area filters requested for the project. The Sheriff's public date-search page currently exposes facility and date fields, not a verified city-level filter.</div></section>
+<section class="notice"><b>PUBLIC RECORDS NOTICE</b><p>An arrest or booking is not a conviction. People are presumed innocent unless proven guilty. Records may be delayed, corrected, restricted, or removed. Verify information with the Sheriff's Office.</p><a href="${info}" target="_blank" rel="noopener">Official inmate information ↗</a></section>
+</main><footer>RIVERSIDE BOOKING BEACON <span>INDEPENDENT PUBLIC-INFORMATION PROJECT</span></footer>`;
