@@ -1,13 +1,13 @@
 # Riverside Booking Beacon
 
-A black and red public booking-record viewer for Riverside County, California.
+Independent black-and-red frontend scaffold for a Riverside County public booking-record viewer.
 
-Features:
-- Search public booking records
-- Filter by city
-- Search by name and charge
-- View booking details
-- Select dates
-- Link to official public records
+## Run locally
+1. Install Node.js.
+2. Run `npm install`.
+3. Run `npm run dev`.
 
-Disclaimer: An arrest is not proof of guilt.
+## Important status
+This scaffold does **not** yet retrieve or display booking records. The live data integration must be built and tested against the Sheriff's current public records interface before deployment. It intentionally displays no invented booking data.
+
+Arrest or booking information is not proof of guilt. Verify records with the official county source.
